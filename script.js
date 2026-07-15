@@ -1,115 +1,85 @@
-// =======================
-// Dark Mode
-// =======================
+function analyzeBlog(){
 
-const darkModeBtn = document.getElementById("darkModeBtn");
+    const title=document.getElementById("title").value.trim();
 
-darkModeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
+    const content=document.getElementById("content").value.trim();
 
-    if (document.body.classList.contains("dark-mode")) {
-        darkModeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-    } else {
-        darkModeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-    }
-});
+    const words=content.split(/\s+/).filter(word=>word!="");
 
-// =======================
-// To-Do List
-// =======================
+    const wordCount=words.length;
 
-const taskInput = document.querySelector(".todo-box input");
-const addBtn = document.querySelector(".todo-box button");
-const taskList = document.getElementById("taskList");
+    document.getElementById("wordCount").innerText=wordCount;
 
-// Load saved tasks
-window.onload = function () {
-    loadTasks();
-};
+    const reading=Math.ceil(wordCount/200);
 
-// Add task button
-addBtn.addEventListener("click", addTask);
+    document.getElementById("readingTime").innerText=reading;
 
-// Press Enter to add task
-taskInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-        e.preventDefault();
-        addTask();
-    }
-});
+    let score=0;
 
-// Add task function
-function addTask() {
+    let tips=[];
 
-    const taskText = taskInput.value.trim();
+    if(title.length>=10){
 
-    if (taskText === "") {
-        alert("Please enter a task.");
-        return;
+        score+=20;
+
+    }else{
+
+        tips.push("Title should be at least 10 characters.");
+
     }
 
-    createTask(taskText);
+    if(wordCount>=300){
 
-    saveTask(taskText);
+        score+=40;
 
-    taskInput.value = "";
-}
+    }else{
 
-// Create task element
-function createTask(taskText) {
+        tips.push("Write at least 300 words.");
 
-    const li = document.createElement("li");
+    }
 
-    li.innerHTML = `
-        ${taskText}
-        <button class="delete-btn">Delete</button>
-    `;
+    if(content.includes(title.split(" ")[0])){
 
-    taskList.appendChild(li);
+        score+=20;
 
-    // Delete task
-    li.querySelector(".delete-btn").addEventListener("click", function () {
-        li.remove();
-        deleteTask(taskText);
-    });
+    }else{
 
-}
+        tips.push("Include the main keyword in the content.");
 
-// =======================
-// Local Storage
-// =======================
+    }
 
-// Save task
-function saveTask(task) {
+    if(content.includes(".")){
 
-    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        score+=20;
 
-    tasks.push(task);
+    }else{
 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+        tips.push("Use proper sentences and punctuation.");
 
-}
+    }
 
-// Load tasks
-function loadTasks() {
+    document.getElementById("seoScore").innerText=score;
 
-    taskList.innerHTML = "";
+    const tipList=document.getElementById("tips");
 
-    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tipList.innerHTML="";
 
-    tasks.forEach(task => {
-        createTask(task);
-    });
+    if(tips.length==0){
 
-}
+        tipList.innerHTML="<li>Excellent! Your blog is well optimized.</li>";
 
-// Delete task
-function deleteTask(task) {
+    }else{
 
-    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tips.forEach(function(tip){
 
-    tasks = tasks.filter(item => item !== task);
+            const li=document.createElement("li");
 
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+            li.innerText=tip;
+
+            tipList.appendChild(li);
+
+        });
+
+    }
 
 }

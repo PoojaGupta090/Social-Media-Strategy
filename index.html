@@ -3,271 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media Strategy Planner</title>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- CSS -->
+    <title>Blog Post Optimization</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Navigation -->
-    <header>
-        <nav class="navbar">
-            <h2 class="logo">Social Planner</h2>
+<div class="container">
 
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#campaign">Campaign</a></li>
-                <li><a href="#calendar">Calendar</a></li>
-                <li><a href="#todo">To-Do</a></li>
-                <li><a href="#analytics">Analytics</a></li>
-            </ul>
+    <h1>Blog Post Optimization</h1>
 
-            <button id="darkModeBtn">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-        </nav>
-    </header>
+    <label>Blog Title</label>
+    <input type="text" id="title" placeholder="Enter blog title">
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <label>Blog Content</label>
+    <textarea id="content" rows="10" placeholder="Write your blog here..."></textarea>
 
-        <div class="hero-text">
-            <h1>Social Media Strategy Planner</h1>
+    <button onclick="analyzeBlog()">Analyze Blog</button>
 
-            <p>
-                Plan your campaigns, schedule content,
-                organize ideas and track social media growth.
-            </p>
+    <div class="result">
 
-            <button>Get Started</button>
+        <h2>Results</h2>
 
-        </div>
+        <p><strong>Word Count:</strong> <span id="wordCount">0</span></p>
 
-    </section>
+        <p><strong>Reading Time:</strong> <span id="readingTime">0</span> min</p>
 
-    <!-- Dashboard -->
+        <p><strong>SEO Score:</strong> <span id="seoScore">0</span>/100</p>
 
-    <section id="dashboard">
+        <p><strong>Suggestions:</strong></p>
 
-        <h2>Dashboard</h2>
+        <ul id="tips"></ul>
 
-        <div class="cards">
+    </div>
 
-            <div class="card">
-                <i class="fa-solid fa-calendar-days"></i>
-                <h3>Total Posts</h3>
-                <p>120</p>
-            </div>
+</div>
 
-            <div class="card">
-                <i class="fa-solid fa-clock"></i>
-                <h3>Scheduled</h3>
-                <p>40</p>
-            </div>
-
-            <div class="card">
-                <i class="fa-solid fa-circle-check"></i>
-                <h3>Published</h3>
-                <p>70</p>
-            </div>
-
-            <div class="card">
-                <i class="fa-solid fa-chart-line"></i>
-                <h3>Followers</h3>
-                <p>15.2K</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Campaign Planner -->
-
-    <section id="campaign">
-
-        <h2>Create Campaign</h2>
-
-        <form>
-
-            <input
-                type="text"
-                placeholder="Campaign Name"
-                required>
-
-            <input
-                type="text"
-                placeholder="Target Audience"
-                required>
-
-            <input
-                type="date">
-
-            <select>
-
-                <option>Instagram</option>
-
-                <option>Facebook</option>
-
-                <option>LinkedIn</option>
-
-                <option>YouTube</option>
-
-                <option>Twitter</option>
-
-            </select>
-
-            <textarea
-                placeholder="Campaign Description">
-            </textarea>
-
-            <button type="submit">
-                Save Campaign
-            </button>
-
-        </form>
-
-    </section>
-
-    <!-- Content Calendar -->
-
-    <section id="calendar">
-
-        <h2>Content Calendar</h2>
-
-        <table>
-
-            <tr>
-
-                <th>Date</th>
-
-                <th>Platform</th>
-
-                <th>Content</th>
-
-                <th>Status</th>
-
-            </tr>
-
-            <tr>
-
-                <td>20 July</td>
-
-                <td>Instagram</td>
-
-                <td>Reel</td>
-
-                <td>Scheduled</td>
-
-            </tr>
-
-            <tr>
-
-                <td>22 July</td>
-
-                <td>Facebook</td>
-
-                <td>Image Post</td>
-
-                <td>Draft</td>
-
-            </tr>
-
-            <tr>
-
-                <td>25 July</td>
-
-                <td>LinkedIn</td>
-
-                <td>Article</td>
-
-                <td>Published</td>
-
-            </tr>
-
-        </table>
-
-    </section>
-
-    <!-- To Do -->
-
-    <section id="todo">
-
-        <h2>Today's Tasks</h2>
-
-        <div class="todo-box">
-
-            <input
-                type="text"
-                placeholder="Add new task">
-
-            <button>Add</button>
-
-            <ul id="taskList">
-
-                <li>Create Instagram Reel</li>
-
-                <li>Design Banner</li>
-
-                <li>Write Caption</li>
-
-            </ul>
-
-        </div>
-
-    </section>
-
-    <!-- Analytics -->
-
-    <section id="analytics">
-
-        <h2>Analytics</h2>
-
-        <div class="cards">
-
-            <div class="card">
-                <h3>Reach</h3>
-                <p>120K</p>
-            </div>
-
-            <div class="card">
-                <h3>Likes</h3>
-                <p>24K</p>
-            </div>
-
-            <div class="card">
-                <h3>Comments</h3>
-                <p>4.5K</p>
-            </div>
-
-            <div class="card">
-                <h3>Shares</h3>
-                <p>2.1K</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Footer -->
-
-    <footer>
-
-        <p>
-            © 2026 Social Media Strategy Planner |
-            Designed using HTML, CSS & JavaScript
-        </p>
-
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
